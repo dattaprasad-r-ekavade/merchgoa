@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { appendFile, mkdir } from "fs/promises";
 import path from "path";
+import { notifyEnquiry, type Enquiry } from "@/lib/notify";
 
 export const runtime = "nodejs";
 
@@ -35,7 +36,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Name and a valid email are required" }, { status: 400 });
   }
 
-  const row = {
+  const row: Enquiry = {
     at: new Date().toISOString(),
     name,
     email,
@@ -54,5 +55,6 @@ export async function POST(req: Request) {
     console.error("enquiry write failed", err);
     return NextResponse.json({ error: "Could not save enquiry" }, { status: 500 });
   }
+  await notifyEnquiry(row);
   return NextResponse.json({ ok: true });
 }

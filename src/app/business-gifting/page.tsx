@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { EnquireForm } from "@/components/EnquireForm";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 export const metadata: Metadata = {
   title: "Business gifting",
@@ -29,7 +30,10 @@ export default function BusinessPage() {
       </ol>
       <div className="mt-10 rounded-2xl bg-[#fffaf3] p-6">
         <h2 className="text-2xl">Send a gift brief</h2>
-        <p className="mt-2 text-sm text-[#5c5148]">Even a rough brief is enough.</p>
+        <p className="mt-2 text-sm text-[#5c5148]">Even a rough brief is enough. We reply within a day.</p>
+        <div className="mt-4">
+          <WhatsAppButton message="Hi MerchGoa, I'd like a quote for branded gifts. Quantity: , needed by: " label="Send the brief on WhatsApp" />
+        </div>
         <div className="mt-4">
           <EnquireForm defaultProduct="Business gifting" />
         </div>

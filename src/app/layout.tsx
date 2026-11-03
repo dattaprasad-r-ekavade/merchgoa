@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Fraunces, Outfit } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { site } from "@/lib/site";
+import { WhatsAppFloat } from "@/components/WhatsAppButton";
+import { business, filled, site } from "@/lib/site";
 import "./globals.css";
 
 const display = Fraunces({
@@ -22,7 +23,6 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description: site.description,
-  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_IN",
@@ -30,13 +30,13 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: site.name,
     description: site.description,
-    images: [{ url: "/images/hero.webp", width: 1200, height: 630, alt: "MerchGoa coastal gifting" }],
+    images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "MerchGoa coastal gifting" }],
   },
   twitter: {
     card: "summary_large_image",
     title: site.name,
     description: site.description,
-    images: ["/images/hero.webp"],
+    images: ["/images/og.jpg"],
   },
   icons: {
     icon: "/images/favicon.png",
@@ -53,7 +53,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     description: site.description,
     image: `${site.url}/images/hero.webp`,
     email: site.email,
-    areaServed: "Goa",
+    ...(filled(site.phone) ? { telephone: site.phone } : {}),
+    ...(filled(business.address) ? { address: business.address } : {}),
+    legalName: business.legalName,
+    areaServed: "IN",
     makesOffer: "Custom merchandise and corporate gifts",
   };
 
@@ -64,6 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         {children}
         <Footer />
+        <WhatsAppFloat />
       </body>
     </html>
   );

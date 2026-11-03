@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/lib/site";
+import { Price } from "@/components/Price";
 
 export function ProductCard({ product }: { product: Product }) {
   return (
@@ -21,6 +22,9 @@ export function ProductCard({ product }: { product: Product }) {
         <p className="text-xs uppercase tracking-[0.18em] text-[#c45c26]">{product.category}</p>
         <h3 className="mt-1 text-xl">{product.name}</h3>
         <p className="mt-1 text-sm text-[#5c5148]">{product.short}</p>
+        <div className="mt-3">
+          <Price product={product} />
+        </div>
       </div>
     </Link>
   );

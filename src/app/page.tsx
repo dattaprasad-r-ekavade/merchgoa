@@ -24,7 +24,7 @@ export default function HomePage() {
               Planning gifts for a team?
             </Link>
           </div>
-          <p className="mt-4 text-sm text-[#5c5148]">Seven first pieces · Design previews · Enquiries open</p>
+          <p className="mt-4 text-sm text-[#5c5148]">Printed to order · Delivered across India · Branded orders for teams</p>
         </div>
         <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#e7dcc8]">
           <Image
@@ -44,7 +44,7 @@ export default function HomePage() {
           For desks, day trips <em className="not-italic text-[#163a44]">& everything between.</em>
         </h2>
         <p className="mb-8 mt-4 max-w-2xl text-sm text-[#5c5148]">
-          These are visual concepts. We confirm the final print, options and price before an order.
+          Every piece is printed to order. Artwork is shown on product mockups.
         </p>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((p) => (

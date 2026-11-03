@@ -20,7 +20,7 @@ export function EnquireForm({ defaultProduct = "" }: { defaultProduct?: string }
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Failed");
       setStatus("ok");
-      setMessage("Got it. We’ll come back with options, price and timing.");
+      setMessage("Got it. We’ll reply within a day with options, price and timing.");
       form.reset();
     } catch {
       setStatus("err");
@@ -36,15 +36,15 @@ export function EnquireForm({ defaultProduct = "" }: { defaultProduct?: string }
       <input type="text" name="company_website" className="hidden" tabIndex={-1} autoComplete="off" />
       <label className="grid gap-1 text-sm">
         Name
-        <input required name="name" className={field} />
+        <input required name="name" autoComplete="name" className={field} />
       </label>
       <label className="grid gap-1 text-sm">
         Email
-        <input required type="email" name="email" className={field} />
+        <input required type="email" name="email" autoComplete="email" className={field} />
       </label>
       <label className="grid gap-1 text-sm">
-        Phone (optional)
-        <input name="phone" className={field} />
+        WhatsApp / phone
+        <input required type="tel" name="phone" autoComplete="tel" inputMode="tel" className={field} placeholder="+91" />
       </label>
       <label className="grid gap-1 text-sm">
         Product or occasion
@@ -53,11 +53,11 @@ export function EnquireForm({ defaultProduct = "" }: { defaultProduct?: string }
       <div className="grid gap-4 md:grid-cols-2">
         <label className="grid gap-1 text-sm">
           Quantity
-          <input name="quantity" className={field} placeholder="e.g. 40" />
+          <input name="quantity" inputMode="numeric" className={field} placeholder="e.g. 40" />
         </label>
         <label className="grid gap-1 text-sm">
           Needed by
-          <input name="needed_by" className={field} placeholder="e.g. 15 Dec 2026" />
+          <input type="date" name="needed_by" className={field} />
         </label>
       </div>
       <label className="grid gap-1 text-sm">

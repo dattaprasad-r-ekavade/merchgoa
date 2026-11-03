@@ -1,4 +1,5 @@
 import { whatsappLink } from "@/lib/site";
+import { getSettings } from "@/lib/store";
 
 function Icon() {
   return (
@@ -8,9 +9,9 @@ function Icon() {
   );
 }
 
-/** Inline "Ask on WhatsApp" button. Renders nothing until site.whatsapp is set. */
-export function WhatsAppButton({ message, label = "Ask on WhatsApp" }: { message: string; label?: string }) {
-  const href = whatsappLink(message);
+/** Inline "Ask on WhatsApp" button. Renders nothing until a WhatsApp number is set in admin. */
+export async function WhatsAppButton({ message, label = "Ask on WhatsApp" }: { message: string; label?: string }) {
+  const href = whatsappLink((await getSettings()).whatsapp, message);
   if (!href) return null;
   return (
     <a
@@ -26,8 +27,8 @@ export function WhatsAppButton({ message, label = "Ask on WhatsApp" }: { message
 }
 
 /** Floating button shown on every page. */
-export function WhatsAppFloat() {
-  const href = whatsappLink("Hi MerchGoa, I have a question about ");
+export async function WhatsAppFloat() {
+  const href = whatsappLink((await getSettings()).whatsapp, "Hi MerchGoa, I have a question about ");
   if (!href) return null;
   return (
     <a

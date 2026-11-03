@@ -1,74 +1,37 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Outfit } from "next/font/google";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { WhatsAppFloat } from "@/components/WhatsAppButton";
-import { business, filled, site } from "@/lib/site";
+import { site } from "@/lib/site";
+import { getSettings } from "@/lib/store";
 import "./globals.css";
 
-const display = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-display",
-});
+const display = Fraunces({ subsets: ["latin"], variable: "--font-display" });
+const sans = Outfit({ subsets: ["latin"], variable: "--font-sans" });
 
-const sans = Outfit({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+export const viewport: Viewport = { themeColor: "#163a44" };
 
-export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
-  title: {
-    default: `${site.name} — ${site.tagline}`,
-    template: `%s — ${site.name}`,
-  },
-  description: site.description,
-  openGraph: {
-    type: "website",
-    locale: "en_IN",
-    url: site.url,
-    siteName: site.name,
-    title: site.name,
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSettings();
+  return {
+    metadataBase: new URL(site.url),
+    applicationName: site.name,
+    title: { default: `${site.name}: ${site.tagline}`, template: `%s | ${site.name}` },
     description: site.description,
-    images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "MerchGoa coastal gifting" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: site.name,
-    description: site.description,
-    images: ["/images/og.jpg"],
-  },
-  icons: {
-    icon: "/images/favicon.png",
-    apple: "/images/favicon.png",
-  },
-};
+    openGraph: {
+      type: "website",
+      locale: site.locale,
+      siteName: site.name,
+      images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "MerchGoa Goa-inspired gifts on a sunlit balcony" }],
+    },
+    twitter: { card: "summary_large_image" },
+    formatDetection: { telephone: false },
+    ...(settings.googleVerification ? { verification: { google: settings.googleVerification } } : {}),
+  };
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": ["Store", "LocalBusiness"],
-    name: site.name,
-    url: site.url,
-    description: site.description,
-    image: `${site.url}/images/hero.webp`,
-    email: site.email,
-    ...(filled(site.phone) ? { telephone: site.phone } : {}),
-    ...(filled(business.address) ? { address: business.address } : {}),
-    legalName: business.legalName,
-    areaServed: "IN",
-    makesOffer: "Custom merchandise and corporate gifts",
-  };
-
   return (
     <html lang="en-IN">
-      <body className={`${display.variable} ${sans.variable} antialiased`}>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        <Header />
-        {children}
-        <Footer />
-        <WhatsAppFloat />
-      </body>
+      <body className={`${display.variable} ${sans.variable} antialiased`}>{children}</body>
     </html>
   );
 }

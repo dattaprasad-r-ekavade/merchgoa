@@ -19,7 +19,7 @@ npm run dev
 
 Production: `npm run build && npm start` (binds loopback only).
 
-Enquiries are appended to `data/enquiries.jsonl` (not in git).
+Products, settings, enquiries and uploaded photos live in `data/` (not in git). Back it up.
 
 ## Enquiry alerts
 
@@ -36,14 +36,42 @@ Telegram setup: message `@BotFather` → `/newbot` → copy the token. Send your
 
 Resend: verify the `merchgoa.com` domain first, or emails from `alerts@merchgoa.com` will be rejected.
 
-## Before launch
+## Admin (`/admin`)
 
-All business details, prices and delivery times live in `src/lib/site.ts`. Run:
+Manage products (prices, photos, SEO, hide/reorder), contact and business details, delivery promises, the
+announcement bar, and the enquiry pipeline (new → contacted → quoted → won/lost, notes, CSV export).
+The dashboard shows a launch checklist.
+
+Admin is off until both env vars are set, then restart:
 
 ```bash
-npm run check:launch
+ADMIN_PASSWORD='a long passphrase'
+ADMIN_SECRET="$(openssl rand -hex 32)"   # signs sessions; change it to sign everyone out
 ```
 
-It fails until every `TODO` is filled, WhatsApp is set, and an alert channel is configured.
-The policy pages (`/shipping`, `/refunds`, `/terms`, `/privacy`) read from the same config. Have a CA/lawyer
-review them, and check the cancellation window and timelines match what Qikink actually delivers.
+Login is throttled (5 failures per IP per 15 min), sessions last 12 hours, and `/admin` is `noindex`.
+
+**Run a single process** (PM2 fork mode, not cluster): writes to `data/` are serialised in-process.
+
+### Data
+
+| File | Contents |
+|---|---|
+| `data/products.json` | Products. Created on first save; until then the seed list in `src/lib/site.ts` is used. |
+| `data/settings.json` | Phone, WhatsApp, address, GSTIN, delivery times, announcement, Search Console code. |
+| `data/enquiries.json` | Enquiries with status and notes. An old `enquiries.jsonl` is imported automatically. |
+| `data/uploads/` | Product photos uploaded in admin (re-encoded to WebP, EXIF stripped). |
+
+Back up `data/` daily, e.g. cron: `tar czf ~/backups/merchgoa-$(date +%F).tgz -C /var/www/merchgoa.com data`.
+
+## SEO
+
+- Per-page titles, descriptions and canonicals; product SEO title/description editable in admin.
+- JSON-LD: Organization/Store + WebSite (all pages), Product + Offer + BreadcrumbList (products),
+  ItemList (shop), FAQPage (business gifting).
+- `sitemap.xml` (with images, hidden products excluded), `robots.txt` (blocks `/admin`, `/api`), web manifest, icons.
+- After launch: add the site in Google Search Console, paste the verification tag in admin Settings,
+  and submit `https://merchgoa.com/sitemap.xml`. Create a Google Business Profile for local search.
+
+Have a CA/lawyer review the policy pages, and check that the cancellation window and delivery times match what
+Qikink actually delivers.

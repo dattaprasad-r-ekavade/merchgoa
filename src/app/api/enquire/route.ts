@@ -1,12 +1,9 @@
 import { NextResponse } from "next/server";
-import { appendFile, mkdir } from "fs/promises";
-import path from "path";
-import { notifyEnquiry, type Enquiry } from "@/lib/notify";
+import { notifyEnquiry } from "@/lib/notify";
+import { addEnquiry } from "@/lib/store";
 
 export const runtime = "nodejs";
 
-const DATA = path.join(process.cwd(), "data");
-const FILE = path.join(DATA, "enquiries.jsonl");
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function str(v: unknown, max: number) {
@@ -36,7 +33,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Name and a valid email are required" }, { status: 400 });
   }
 
-  const row: Enquiry = {
+  const row = {
     at: new Date().toISOString(),
     name,
     email,
@@ -49,12 +46,10 @@ export async function POST(req: Request) {
   };
 
   try {
-    await mkdir(DATA, { recursive: true });
-    await appendFile(FILE, JSON.stringify(row) + "\n", "utf8");
+    await notifyEnquiry(await addEnquiry(row));
   } catch (err) {
     console.error("enquiry write failed", err);
     return NextResponse.json({ error: "Could not save enquiry" }, { status: 500 });
   }
-  await notifyEnquiry(row);
   return NextResponse.json({ ok: true });
 }

@@ -8,23 +8,15 @@
  * Failures are logged, never thrown: the enquiry is already saved to disk.
  */
 
-export type Enquiry = {
-  at: string;
-  name: string;
-  email: string;
-  phone: string;
-  product: string;
-  quantity: string;
-  needed_by: string;
-  location: string;
-  notes: string;
-};
+
+import type { Enquiry } from "@/lib/site";
 
 const TIMEOUT_MS = 5000;
 
 function summary(e: Enquiry) {
   return [
     `New MerchGoa enquiry`,
+    `${process.env.SITE_URL || "https://merchgoa.com"}/admin/enquiries`,
     ``,
     `Name: ${e.name}`,
     `Email: ${e.email}`,

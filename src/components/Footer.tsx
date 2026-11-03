@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { business, filled, site } from "@/lib/site";
+import { site } from "@/lib/site";
+import { getSettings } from "@/lib/store";
 
 const shop = [
   { href: "/shop", label: "Shop" },
@@ -14,10 +15,9 @@ const policies = [
   { href: "/privacy", label: "Privacy policy" },
 ];
 
-export function Footer() {
-  const phone = filled(site.phone);
-  const address = filled(business.address);
-  const gstin = filled(business.gstin);
+export async function Footer() {
+  const s = await getSettings();
+  const { phone, address, gstin } = s;
   return (
     <footer className="mt-20 border-t border-[#241c16]/10 bg-[#163a44] text-[#fffaf3]">
       <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:grid-cols-2 md:grid-cols-4">
@@ -53,8 +53,8 @@ export function Footer() {
               {phone}
             </a>
           ) : null}
-          {site.instagram ? (
-            <a className="block py-0.5 hover:underline" href={site.instagram} target="_blank" rel="noopener noreferrer">
+          {s.instagram ? (
+            <a className="block py-0.5 hover:underline" href={s.instagram} target="_blank" rel="noopener noreferrer">
               Instagram
             </a>
           ) : null}
@@ -62,7 +62,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 px-5 py-4 text-center text-xs text-white/50">
-        © {new Date().getFullYear()} MerchGoa is a brand of {business.legalName}.
+        © {new Date().getFullYear()} MerchGoa is a brand of {site.legalName}.
         {gstin ? ` GSTIN ${gstin}.` : ""}
       </div>
     </footer>

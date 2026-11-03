@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -H 127.0.0.1 -p 3010",
-    "lint": "eslint",
-    "check:launch": "node scripts/check-launch.mjs"
+    "lint": "eslint"
   },
   "dependencies": {
     "next": "^15.5.28",

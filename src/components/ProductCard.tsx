@@ -3,7 +3,8 @@ import Link from "next/link";
 import type { Product } from "@/lib/site";
 import { Price } from "@/components/Price";
 
-export function ProductCard({ product }: { product: Product }) {
+export function ProductCard({ product, headingLevel = "h2" }: { product: Product; headingLevel?: "h2" | "h3" }) {
+  const Heading = headingLevel;
   return (
     <Link
       href={`/product/${product.slug}`}
@@ -12,7 +13,7 @@ export function ProductCard({ product }: { product: Product }) {
       <div className="relative aspect-square bg-[#e7dcc8]">
         <Image
           src={product.image}
-          alt={product.name}
+          alt={product.imageAlt || product.name}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
           className="object-cover transition duration-500 group-hover:scale-[1.03]"
@@ -20,7 +21,7 @@ export function ProductCard({ product }: { product: Product }) {
       </div>
       <div className="p-5">
         <p className="text-xs uppercase tracking-[0.18em] text-[#c45c26]">{product.category}</p>
-        <h3 className="mt-1 text-xl">{product.name}</h3>
+        <Heading className="mt-1 text-xl">{product.name}</Heading>
         <p className="mt-1 text-sm text-[#5c5148]">{product.short}</p>
         <div className="mt-3">
           <Price product={product} />

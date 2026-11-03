@@ -1,9 +1,8 @@
 import Link from "next/link";
 
 const links = [
-  { href: "/shop", label: "Shop" },
-  { href: "/business-gifting", label: "Business gifting" },
-  { href: "/contact", label: "Contact" },
+  { href: "/shop", label: "Shop", short: "Shop" },
+  { href: "/business-gifting", label: "Business gifting", short: "Gifting" },
 ];
 
 export function Header() {
@@ -13,15 +12,16 @@ export function Header() {
         <Link href="/" className="text-lg tracking-tight">
           <span className="font-[family-name:var(--font-display)] text-xl">MerchGoa</span>
         </Link>
-        <nav className="flex flex-wrap items-center gap-5 text-sm text-[#5c5148]">
+        <nav className="flex items-center gap-4 text-sm text-[#5c5148] sm:gap-5">
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className="hover:text-[#241c16]">
-              {l.label}
+            <Link key={l.href} href={l.href} className="whitespace-nowrap hover:text-[#241c16]">
+              <span className="sm:hidden">{l.short}</span>
+              <span className="hidden sm:inline">{l.label}</span>
             </Link>
           ))}
           <Link
             href="/contact"
-            className="rounded-full bg-[#163a44] px-4 py-2 text-[#fffaf3] hover:bg-[#241c16]"
+            className="whitespace-nowrap rounded-full bg-[#163a44] px-4 py-2 text-[#fffaf3] hover:bg-[#241c16]"
           >
             Enquire
           </Link>

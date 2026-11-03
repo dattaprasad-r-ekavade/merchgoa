@@ -29,7 +29,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   return (
     <main className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-2">
       <div className="relative aspect-square overflow-hidden rounded-[2rem] bg-[#e7dcc8]">
-        <Image src={product.image} alt={product.name} fill className="object-cover" sizes="50vw" />
+        <Image src={product.image} alt={product.name} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
       </div>
       <div>
         <p className="text-xs uppercase tracking-[0.22em] text-[#c45c26]">{product.category}</p>

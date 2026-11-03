@@ -20,16 +20,15 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-h1,
-h2,
-h3 {
-  font-family: var(--font-display), Georgia, serif;
-  letter-spacing: -0.03em;
-  font-weight: 500;
-}
-
-a {
-  color: inherit;
+/* Keep element defaults in the base layer so Tailwind utilities (text-white, font-bold…) can override them. */
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display), Georgia, serif;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+  }
 }
 
 ::selection {

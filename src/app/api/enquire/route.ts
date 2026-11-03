@@ -6,38 +6,53 @@ export const runtime = "nodejs";
 
 const DATA = path.join(process.cwd(), "data");
 const FILE = path.join(DATA, "enquiries.jsonl");
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function str(v: unknown, max: number) {
+  return typeof v === "string" ? v.trim().slice(0, max) : "";
+}
 
 export async function POST(req: Request) {
-  let body: Record<string, string> = {};
+  let body: unknown;
   try {
     body = await req.json();
   } catch {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  }
+  const b = body as Record<string, unknown>;
 
-  if (body.company_website) {
+  // Honeypot: bots fill the hidden field; pretend success.
+  if (b.company_website) {
     return NextResponse.json({ ok: true });
   }
 
-  const name = (body.name || "").trim();
-  const email = (body.email || "").trim();
-  if (!name || !email || !email.includes("@")) {
-    return NextResponse.json({ error: "Name and email required" }, { status: 400 });
+  const name = str(b.name, 120);
+  const email = str(b.email, 200);
+  if (!name || !EMAIL_RE.test(email)) {
+    return NextResponse.json({ error: "Name and a valid email are required" }, { status: 400 });
   }
 
   const row = {
     at: new Date().toISOString(),
     name,
     email,
-    phone: (body.phone || "").slice(0, 40),
-    product: (body.product || "").slice(0, 200),
-    quantity: (body.quantity || "").slice(0, 40),
-    needed_by: (body.needed_by || "").slice(0, 80),
-    location: (body.location || "").slice(0, 120),
-    notes: (body.notes || "").slice(0, 4000),
+    phone: str(b.phone, 40),
+    product: str(b.product, 200),
+    quantity: str(b.quantity, 40),
+    needed_by: str(b.needed_by, 80),
+    location: str(b.location, 120),
+    notes: str(b.notes, 4000),
   };
 
-  await mkdir(DATA, { recursive: true });
-  await appendFile(FILE, JSON.stringify(row) + "\n", "utf8");
+  try {
+    await mkdir(DATA, { recursive: true });
+    await appendFile(FILE, JSON.stringify(row) + "\n", "utf8");
+  } catch (err) {
+    console.error("enquiry write failed", err);
+    return NextResponse.json({ error: "Could not save enquiry" }, { status: 500 });
+  }
   return NextResponse.json({ ok: true });
 }

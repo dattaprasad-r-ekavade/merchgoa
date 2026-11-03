@@ -1,103 +1,70 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ProductCard } from "@/components/ProductCard";
+import { products } from "@/lib/site";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main>
+      <section className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 md:grid-cols-2 md:py-20">
+        <div>
+          <p className="text-xs uppercase tracking-[0.22em] text-[#c45c26]">MerchGoa / Collection 01</p>
+          <h1 className="mt-4 text-5xl leading-[1.05] md:text-6xl">
+            Good things to <em className="not-italic text-[#163a44]">carry away.</em>
+          </h1>
+          <p className="mt-5 max-w-md text-[#5c5148]">
+            Custom merchandise and corporate gifts for Goa businesses, teams and events. Pick a
+            Goa-inspired design or bring your own branding.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/shop" className="rounded-full bg-[#163a44] px-5 py-3 text-white">
+              Explore the collection
+            </Link>
+            <Link href="/business-gifting" className="rounded-full border border-[#241c16]/20 px-5 py-3">
+              Planning gifts for a team?
+            </Link>
+          </div>
+          <p className="mt-4 text-sm text-[#5c5148]">Seven first pieces · Design previews · Enquiries open</p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#e7dcc8]">
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src="/images/hero.webp"
+            alt="Goa-inspired gift set with tote, mug and notebook"
+            fill
+            priority
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 py-10">
+        <p className="text-xs uppercase tracking-[0.22em] text-[#c45c26]">The first collection</p>
+        <h2 className="mt-2 text-4xl">
+          For desks, day trips <em className="not-italic text-[#163a44]">& everything between.</em>
+        </h2>
+        <p className="mb-8 mt-4 max-w-2xl text-sm text-[#5c5148]">
+          These are visual concepts. We confirm the final print, options and price before an order.
+        </p>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {products.map((p) => (
+            <ProductCard key={p.slug} product={p} />
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto my-10 max-w-6xl rounded-[2rem] bg-[#163a44] px-6 py-14 text-[#fffaf3] md:px-12">
+        <p className="text-xs uppercase tracking-[0.22em] text-[#f0c9a8]">Christmas 2026 / corporate gifting</p>
+        <h2 className="mt-3 max-w-xl text-4xl">
+          Your team. Your brand. <em className="not-italic text-[#f0c9a8]">Thoughtful gifts.</em>
+        </h2>
+        <p className="mt-4 max-w-xl text-white/75">
+          Build Christmas gifts, staff welcome kits or event merchandise around your logo and budget.
+        </p>
+        <Link href="/business-gifting" className="mt-8 inline-block rounded-full bg-[#c45c26] px-5 py-3 text-white">
+          Talk through a gift brief
+        </Link>
+      </section>
+    </main>
   );
 }

@@ -29,7 +29,7 @@ export function EnquireForm({ defaultProduct = "" }: { defaultProduct?: string }
   }
 
   const field =
-    "w-full rounded-xl border border-ink/15 bg-field px-4 py-3 text-ink outline-none focus:border-[#c45c26]";
+    "w-full rounded-md border border-ink/15 bg-field px-4 py-3 text-ink outline-none focus:border-[#c45c26]";
 
   return (
     <form onSubmit={onSubmit} className="grid gap-4">
@@ -71,7 +71,7 @@ export function EnquireForm({ defaultProduct = "" }: { defaultProduct?: string }
       <p className="text-xs text-ink-soft">Do not send card numbers or passwords.</p>
       <button
         disabled={status === "sending"}
-        className="rounded-full bg-[#c45c26] px-6 py-3 text-white hover:bg-sea-hover disabled:opacity-60"
+        className="rounded-md bg-[#c45c26] px-6 py-3 text-white hover:bg-sea-hover disabled:opacity-60"
       >
         {status === "sending" ? "Sending…" : "Send enquiry"}
       </button>

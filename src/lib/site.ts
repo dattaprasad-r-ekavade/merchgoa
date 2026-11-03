@@ -90,7 +90,7 @@ export const seedProducts: Product[] = [
   {
     slug: "goa-arch-coaster",
     name: "Goa Arch Coaster",
-    short: "A small piece of the coast for the desk.",
+    short: "Goa arch artwork for the desk or coffee table.",
     description:
       "A coaster framed by a Goa arch, looking out to the sea. Printed to order. Ask about sets and branded packs.",
     image: "/images/coaster.jpg",
@@ -101,7 +101,7 @@ export const seedProducts: Product[] = [
   {
     slug: "goa-coast-a5-notebook",
     name: "Goa Coast A5 Notebook",
-    short: "For lists, briefs and ferry tickets.",
+    short: "A5, with coastal artwork on the cover.",
     description:
       "An A5 notebook with coastal artwork on the cover. Printed to order, and easy to add your logo for team kits.",
     image: "/images/notebook.jpg",
@@ -112,7 +112,7 @@ export const seedProducts: Product[] = [
   {
     slug: "goa-coast-fridge-magnet",
     name: "Goa Coast Fridge Magnet",
-    short: "A keepsake that actually stays put.",
+    short: "A small souvenir in warm coastal colours.",
     description:
       "A fridge magnet in warm coastal colour. Printed to order. A small keepsake for guests and visitors.",
     image: "/images/magnet.jpg",
@@ -123,7 +123,7 @@ export const seedProducts: Product[] = [
   {
     slug: "goa-coast-mouse-pad",
     name: "Goa Coast Mouse Pad",
-    short: "A bit of shoreline under the cursor.",
+    short: "Goa beach artwork for the desk.",
     description: "A desk mouse pad with Goa-inspired artwork, printed to order.",
     image: "/images/mouse-pad.jpg",
     imageAlt: "Mouse pad printed with a Goa beach, arch and palm trees",
@@ -133,7 +133,7 @@ export const seedProducts: Product[] = [
   {
     slug: "goa-sunset-11-oz-mug",
     name: "Goa Sunset 11 oz Mug",
-    short: "Tea, chai, deadlines.",
+    short: "11 oz, with wrap-around sunset artwork.",
     description: "A classic 11 oz mug wrapped in Goa sunset artwork. Printed to order.",
     image: "/images/mug.jpg",
     imageAlt: "White 11 oz mug with Goa sunset, waves and laterite arch artwork",
@@ -143,7 +143,7 @@ export const seedProducts: Product[] = [
   {
     slug: "goa-sunset-classic-t-shirt",
     name: "Goa Sunset Classic T-Shirt",
-    short: "Crew-neck, coastal artwork.",
+    short: "Crew-neck tee with a Goa sunset print.",
     description:
       "A classic crew-neck tee with warm coastal artwork on the front. Printed to order in your size.",
     image: "/images/tee.jpg",
@@ -154,7 +154,7 @@ export const seedProducts: Product[] = [
   {
     slug: "goa-sunset-tote-bag",
     name: "Goa Sunset Tote Bag",
-    short: "Market, ferry, unplanned detour.",
+    short: "Canvas tote with Goa sunset artwork.",
     description: "A canvas tote with sunset artwork. Printed to order.",
     image: "/images/tote.jpg",
     imageAlt: "Canvas tote bag with Goa sunset and palm tree artwork",

@@ -5,10 +5,9 @@ export async function LegalPage({ title, children }: { title: string; children: 
   const { policiesUpdated } = await getSettings();
   return (
     <main className="mx-auto max-w-3xl px-5 py-14">
-      <p className="text-xs uppercase tracking-[0.22em] text-coral-ink">MerchGoa / policies</p>
-      <h1 className="mt-3 text-4xl md:text-5xl">{title}</h1>
+      <h1 className="text-4xl md:text-5xl">{title}</h1>
       <p className="mt-3 text-sm text-ink-soft">Last updated {policiesUpdated}</p>
-      <div className="legal mt-8 rounded-2xl bg-surface p-6 text-ink md:p-8">{children}</div>
+      <div className="legal mt-8 rounded-lg bg-surface p-6 text-ink md:p-8">{children}</div>
     </main>
   );
 }

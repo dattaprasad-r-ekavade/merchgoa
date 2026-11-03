@@ -18,7 +18,7 @@ export async function WhatsAppButton({ message, label = "Ask on WhatsApp" }: { m
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 rounded-full bg-[#1f7a4d] px-5 py-3 text-white hover:bg-[#165c3a]"
+      className="inline-flex items-center gap-2 rounded-md bg-[#1f7a4d] px-5 py-3 text-white hover:bg-[#165c3a]"
     >
       <Icon />
       {label}

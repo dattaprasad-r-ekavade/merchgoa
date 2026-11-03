@@ -1,11 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Outfit } from "next/font/google";
+import { Mukta, Rozha_One } from "next/font/google";
 import { site } from "@/lib/site";
 import { getSettings } from "@/lib/store";
 import "./globals.css";
 
-const display = Fraunces({ subsets: ["latin"], variable: "--font-display" });
-const sans = Outfit({ subsets: ["latin"], variable: "--font-sans" });
+// Indian Type Foundry faces; both cover Devanagari, so Konkani/Hindi copy will match later.
+const display = Rozha_One({ weight: "400", subsets: ["latin", "devanagari"], variable: "--font-display" });
+const sans = Mukta({ weight: ["400", "500", "600", "700"], subsets: ["latin", "devanagari"], variable: "--font-sans" });
 
 export const viewport: Viewport = {
   themeColor: [

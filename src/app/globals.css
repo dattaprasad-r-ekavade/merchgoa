@@ -105,8 +105,9 @@ body {
   h2,
   h3 {
     font-family: var(--font-display), Georgia, serif;
-    letter-spacing: -0.03em;
-    font-weight: 500;
+    letter-spacing: -0.01em;
+    font-weight: 400; /* Rozha One has a single weight */
+    line-height: 1.1;
   }
 }
 

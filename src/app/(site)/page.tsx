@@ -14,25 +14,21 @@ export default async function HomePage() {
     <main>
       <section className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 md:grid-cols-2 md:py-20">
         <div>
-          <p className="text-xs uppercase tracking-[0.22em] text-coral-ink">MerchGoa / Collection 01</p>
-          <h1 className="mt-4 text-5xl leading-[1.05] md:text-6xl">
-            Good things to <em className="not-italic text-sea-ink">carry away.</em>
-          </h1>
-          <p className="mt-5 max-w-md text-ink-soft">
-            Goa souvenirs and custom merchandise, printed to order and delivered across India. Pick a
-            Goa-inspired design, or put your own logo on corporate gifts for your team.
+          <h1 className="text-4xl leading-[1.1] sm:text-5xl md:text-6xl">Goa souvenirs &amp; custom gifts, printed to order</h1>
+          <p className="mt-5 max-w-md text-lg text-ink-soft">
+            Mugs, tees, totes and desk pieces with original Goa artwork, or with your company&rsquo;s logo.
+            Delivered anywhere in India.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/shop" className="rounded-full bg-sea px-5 py-3 text-white">
-              Explore the collection
+            <Link href="/shop" className="rounded-md bg-sea px-5 py-3 font-medium text-white hover:bg-sea-hover">
+              Shop the collection
             </Link>
-            <Link href="/business-gifting" className="rounded-full border border-ink/20 px-5 py-3">
-              Planning gifts for a team?
+            <Link href="/business-gifting" className="rounded-md border border-ink/25 px-5 py-3 font-medium hover:border-ink/50">
+              Corporate gifting
             </Link>
           </div>
-          <p className="mt-4 text-sm text-ink-soft">Printed to order · Delivered across India · Branded orders for teams</p>
         </div>
-        <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-surface-2">
+        <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-surface-2">
           <Image
             src="/images/hero.webp"
             alt="Goa-inspired gift set with a tote bag, mug and notebook on a sunlit balcony by the sea"
@@ -45,13 +41,10 @@ export default async function HomePage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-10">
-        <p className="text-xs uppercase tracking-[0.22em] text-coral-ink">The first collection</p>
-        <h2 className="mt-2 text-4xl">
-          For desks, day trips <em className="not-italic text-sea-ink">& everything between.</em>
-        </h2>
-        <p className="mb-8 mt-4 max-w-2xl text-sm text-ink-soft">
-          Every piece is printed to order. Artwork is shown on product mockups.
-        </p>
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b border-ink/10 pb-4">
+          <h2 className="text-4xl">The collection</h2>
+          <p className="text-sm text-ink-soft">Each piece is printed to order. Artwork shown on product mockups.</p>
+        </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((p) => (
             <ProductCard key={p.slug} product={p} headingLevel="h3" />
@@ -59,17 +52,21 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto my-10 max-w-6xl rounded-[2rem] bg-sea px-6 py-14 text-[#fffaf3] md:px-12">
-        <p className="text-xs uppercase tracking-[0.22em] text-[#f0c9a8]">Christmas 2026 / corporate gifting</p>
-        <h2 className="mt-3 max-w-xl text-4xl">
-          Your team. Your brand. <em className="not-italic text-[#f0c9a8]">Thoughtful gifts.</em>
-        </h2>
-        <p className="mt-4 max-w-xl text-white/75">
-          Build Christmas gifts, staff welcome kits or event merchandise around your logo and budget.
-        </p>
-        <Link href="/business-gifting" className="mt-8 inline-block rounded-full bg-[#c45c26] px-5 py-3 text-white">
-          Talk through a gift brief
-        </Link>
+      <section className="mx-auto my-10 max-w-6xl px-5">
+        <div className="grid gap-6 rounded-lg bg-sea px-6 py-12 text-[#fffaf3] md:grid-cols-[1fr_auto] md:items-center md:px-12">
+          <div>
+            <h2 className="max-w-xl text-4xl">Branded gifts for your team this Christmas</h2>
+            <p className="mt-3 max-w-xl text-white/80">
+              Welcome kits, staff gifts and event merchandise with your logo, planned around your budget and date.
+            </p>
+          </div>
+          <Link
+            href="/business-gifting"
+            className="justify-self-start rounded-md bg-[#c45c26] px-5 py-3 font-medium text-white hover:bg-[#a84d1f]"
+          >
+            Get a quote
+          </Link>
+        </div>
       </section>
     </main>
   );

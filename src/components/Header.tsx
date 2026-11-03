@@ -22,7 +22,7 @@ export function Header() {
           ))}
           <Link
             href="/contact"
-            className="whitespace-nowrap rounded-full bg-sea px-4 py-2 text-[#fffaf3] hover:bg-sea-hover"
+            className="whitespace-nowrap rounded-md bg-sea px-4 py-2 text-[#fffaf3] hover:bg-sea-hover"
           >
             Enquire
           </Link>

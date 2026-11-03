@@ -103,7 +103,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       </nav>
 
       <div className="grid gap-10 md:grid-cols-2">
-        <div className="relative aspect-square overflow-hidden rounded-[2rem] bg-surface-2 md:sticky md:top-24 md:self-start">
+        <div className="relative aspect-square overflow-hidden rounded-lg bg-surface-2 md:sticky md:top-24 md:self-start">
           <Image
             src={product.image}
             alt={product.imageAlt || product.name}
@@ -114,8 +114,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           />
         </div>
         <div>
-          <p className="text-xs uppercase tracking-[0.22em] text-coral-ink">{product.category}</p>
-          <h1 className="mt-3 text-4xl md:text-5xl">{product.name}</h1>
+          <h1 className="text-4xl md:text-5xl">{product.name}</h1>
           <div className="mt-4">
             <Price product={product} size="lg" />
           </div>
@@ -144,7 +143,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <WhatsAppButton message={`Hi MerchGoa, I'm interested in the ${product.name}.`} />
           </div>
 
-          <div className="mt-10 rounded-2xl bg-surface p-6">
+          <div className="mt-10 rounded-lg border border-ink/10 bg-surface p-6">
             <h2 className="text-2xl">Enquire about this piece</h2>
             <p className="mt-1 text-sm text-ink-soft">Quantity, date and any personalisation. We reply within a day.</p>
             <div className="mt-4">
@@ -156,7 +155,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
       {related.length ? (
         <section className="mt-20">
-          <h2 className="text-3xl">More from the collection</h2>
+          <h2 className="border-b border-ink/10 pb-4 text-3xl">More from the collection</h2>
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((p) => (
               <ProductCard key={p.slug} product={p} headingLevel="h3" />

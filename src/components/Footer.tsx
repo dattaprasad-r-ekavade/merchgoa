@@ -19,7 +19,7 @@ export async function Footer() {
   const s = await getSettings();
   const { phone, address, gstin } = s;
   return (
-    <footer className="mt-20 border-t border-[#241c16]/10 bg-[#163a44] text-[#fffaf3]">
+    <footer className="mt-20 border-t border-ink/10 bg-sea text-[#fffaf3]">
       <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:grid-cols-2 md:grid-cols-4">
         <div>
           <p className="font-[family-name:var(--font-display)] text-2xl">MerchGoa</p>

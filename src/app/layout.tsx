@@ -7,7 +7,15 @@ import "./globals.css";
 const display = Fraunces({ subsets: ["latin"], variable: "--font-display" });
 const sans = Outfit({ subsets: ["latin"], variable: "--font-sans" });
 
-export const viewport: Viewport = { themeColor: "#163a44" };
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f3eadc" },
+    { media: "(prefers-color-scheme: dark)", color: "#14110e" },
+  ],
+};
+
+// Runs before first paint so a saved light/dark choice never flashes the wrong theme.
+const themeScript = `try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`;
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings();
@@ -30,7 +38,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN">
+    <html lang="en-IN" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className={`${display.variable} ${sans.variable} antialiased`}>{children}</body>
     </html>
   );

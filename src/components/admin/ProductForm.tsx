@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useActionState, useState } from "react";
+import { startTransition, useActionState, useState } from "react";
 import { saveProduct } from "@/app/admin/actions";
 import { Card, Field, inputCls } from "@/components/admin/fields";
-import { FormMessage, SubmitButton } from "@/components/admin/ui";
+import { FormMessage, SubmitButton, submitWithoutReset } from "@/components/admin/ui";
 import type { Product } from "@/lib/site";
 
 export function ProductForm({
@@ -16,7 +16,7 @@ export function ProductForm({
   categories: string[];
   saved?: boolean;
 }) {
-  const [state, action] = useActionState(saveProduct, saved ? { ok: "Product created." } : undefined);
+  const [state, action, pending] = useActionState(saveProduct, saved ? { ok: "Product created." } : undefined);
   const [preview, setPreview] = useState<string | null>(null);
   const isNew = !product;
   const seoTitle = product?.seoTitle ?? "";
@@ -25,7 +25,7 @@ export function ProductForm({
   const [descLen, setDescLen] = useState(seoDesc.length);
 
   return (
-    <form action={action} className="grid gap-6 lg:grid-cols-[1fr_320px]">
+    <form onSubmit={submitWithoutReset(action, startTransition)} className="grid gap-6 lg:grid-cols-[1fr_320px]">
       <input type="hidden" name="isNew" value={isNew ? "1" : "0"} />
       {!isNew ? <input type="hidden" name="slug" value={product.slug} /> : null}
 
@@ -37,7 +37,7 @@ export function ProductForm({
             </Field>
             {isNew ? (
               <Field label="URL" hint="Leave blank to use the name. Can't be changed later (it would break links).">
-                <div className="flex items-center gap-1 text-sm text-[#5c5148]">
+                <div className="flex items-center gap-1 text-sm text-ink-soft">
                   /product/
                   <input name="slug" pattern="[a-z0-9-]*" className={inputCls} placeholder="goa-sunset-mug" />
                 </div>
@@ -72,7 +72,7 @@ export function ProductForm({
               <input name="bulkPrice" inputMode="numeric" defaultValue={product?.bulk?.price ?? ""} className={inputCls} />
             </Field>
           </div>
-          <p className="mt-2 text-xs text-[#5c5148]">
+          <p className="mt-2 text-xs text-ink-soft">
             Prices include GST and shipping. Leave the price blank to show “Price on request”.
           </p>
         </Card>
@@ -104,14 +104,14 @@ export function ProductForm({
 
       <div className="grid content-start gap-6">
         <Card title="Photo">
-          <div className="relative aspect-square overflow-hidden rounded-lg bg-[#e7dcc8]">
+          <div className="relative aspect-square overflow-hidden rounded-lg bg-surface-2">
             {preview ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={preview} alt="" className="h-full w-full object-cover" />
             ) : product?.image ? (
               <Image src={product.image} alt="" fill sizes="320px" className="object-cover" />
             ) : (
-              <span className="grid h-full place-items-center text-sm text-[#5c5148]">No photo yet</span>
+              <span className="grid h-full place-items-center text-sm text-ink-soft">No photo yet</span>
             )}
           </div>
           <div className="mt-3 grid gap-3">
@@ -126,20 +126,20 @@ export function ProductForm({
               }}
               className="text-sm"
             />
-            <p className="text-xs text-[#5c5148]">Square, at least 1200×1200. Max 8 MB. Converted to WebP automatically.</p>
+            <p className="text-xs text-ink-soft">Square, at least 1200×1200. Max 8 MB. Converted to WebP automatically.</p>
             <Field label="Alt text" hint="Describe the photo for Google Images and screen readers.">
               <input name="imageAlt" defaultValue={product?.imageAlt} maxLength={200} className={inputCls} />
             </Field>
           </div>
         </Card>
 
-        <div className="grid gap-3 rounded-xl border border-[#241c16]/10 bg-white p-4">
+        <div className="grid gap-3 rounded-xl border border-ink/10 bg-surface p-4">
           <label className="flex items-center gap-2 text-sm">
             <input type="checkbox" name="hidden" defaultChecked={product?.hidden} />
             Hide from the site
           </label>
           <FormMessage state={state} />
-          <SubmitButton>{isNew ? "Create product" : "Save changes"}</SubmitButton>
+          <SubmitButton pending={pending}>{isNew ? "Create product" : "Save changes"}</SubmitButton>
           {!isNew ? (
             <a href={`/product/${product.slug}`} target="_blank" rel="noopener" className="text-center text-sm underline underline-offset-2">
               View on site ↗

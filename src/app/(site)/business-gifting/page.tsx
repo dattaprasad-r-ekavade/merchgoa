@@ -57,9 +57,9 @@ export default async function BusinessPage() {
   return (
     <main className="mx-auto max-w-4xl px-5 py-14">
       <JsonLd data={faqLd} />
-      <p className="text-xs uppercase tracking-[0.22em] text-[#c45c26]">MerchGoa / for business</p>
+      <p className="text-xs uppercase tracking-[0.22em] text-coral-ink">MerchGoa / for business</p>
       <h1 className="mt-3 text-5xl">Corporate gifts &amp; branded merchandise in Goa</h1>
-      <p className="mt-4 max-w-2xl text-lg text-[#5c5148]">
+      <p className="mt-4 max-w-2xl text-lg text-ink-soft">
         Thoughtful gifts with your branding for Goa businesses, hotels, offices and events. Tell us your budget,
         quantity and date, and we plan gifts around your logo or a Goa-inspired design.
       </p>
@@ -77,13 +77,13 @@ export default async function BusinessPage() {
         <h2 className="text-3xl">Who we make gifts for</h2>
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {audiences.map((a) => (
-            <div key={a.title} className="rounded-2xl bg-[#fffaf3] p-5">
+            <div key={a.title} className="rounded-2xl bg-surface p-5">
               <h3 className="text-xl">{a.title}</h3>
-              <p className="mt-2 text-sm text-[#5c5148]">{a.body}</p>
+              <p className="mt-2 text-sm text-ink-soft">{a.body}</p>
             </div>
           ))}
         </div>
-        <p className="mt-4 text-sm text-[#5c5148]">
+        <p className="mt-4 text-sm text-ink-soft">
           Browse the <Link href="/shop" className="underline underline-offset-2">full collection</Link> for products you
           can brand.
         </p>
@@ -92,15 +92,15 @@ export default async function BusinessPage() {
       <section className="mt-14">
         <h2 className="text-3xl">How it works</h2>
         <ol className="mt-6 grid gap-4 text-sm md:grid-cols-3">
-          <li className="rounded-2xl bg-[#fffaf3] p-5">
+          <li className="rounded-2xl bg-surface p-5">
             <strong className="block text-base">01 · Brief</strong>
             Quantity, budget, recipients, delivery addresses and the date you need them.
           </li>
-          <li className="rounded-2xl bg-[#fffaf3] p-5">
+          <li className="rounded-2xl bg-surface p-5">
             <strong className="block text-base">02 · Quote &amp; proof</strong>
             We send options, a full price and a mockup with your logo.
           </li>
-          <li className="rounded-2xl bg-[#fffaf3] p-5">
+          <li className="rounded-2xl bg-surface p-5">
             <strong className="block text-base">03 · Approve &amp; deliver</strong>
             You approve the artwork, we print and deliver on the agreed schedule.
           </li>
@@ -109,22 +109,22 @@ export default async function BusinessPage() {
 
       <section className="mt-14">
         <h2 className="text-3xl">Questions businesses ask</h2>
-        <div className="mt-6 divide-y divide-[#241c16]/10 rounded-2xl bg-[#fffaf3] px-6">
+        <div className="mt-6 divide-y divide-ink/10 rounded-2xl bg-surface px-6">
           {faqs.map((f) => (
             <details key={f.q} className="group py-4">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-medium">
                 {f.q}
-                <span aria-hidden className="text-[#c45c26] transition group-open:rotate-45">+</span>
+                <span aria-hidden className="text-coral-ink transition group-open:rotate-45">+</span>
               </summary>
-              <p className="mt-2 text-sm text-[#5c5148]">{f.a}</p>
+              <p className="mt-2 text-sm text-ink-soft">{f.a}</p>
             </details>
           ))}
         </div>
       </section>
 
-      <section id="brief" className="mt-14 scroll-mt-24 rounded-2xl bg-[#fffaf3] p-6">
+      <section id="brief" className="mt-14 scroll-mt-24 rounded-2xl bg-surface p-6">
         <h2 className="text-2xl">Send a gift brief</h2>
-        <p className="mt-2 text-sm text-[#5c5148]">Even a rough brief is enough. We reply within a day.</p>
+        <p className="mt-2 text-sm text-ink-soft">Even a rough brief is enough. We reply within a day.</p>
         <div className="mt-4">
           <EnquireForm defaultProduct="Business gifting" />
         </div>

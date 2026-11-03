@@ -28,7 +28,7 @@ export default async function EnquiriesPage({
     <div className="grid gap-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <h1 className="text-3xl">Enquiries</h1>
-        <a href="/admin/enquiries/export" className="rounded-lg border border-[#241c16]/20 bg-white px-3 py-2 text-sm">
+        <a href="/admin/enquiries/export" className="rounded-lg border border-ink/20 bg-surface px-3 py-2 text-sm">
           Export CSV
         </a>
       </div>
@@ -50,7 +50,7 @@ export default async function EnquiriesPage({
       </div>
 
       {rows.length === 0 ? (
-        <p className="rounded-xl border border-dashed border-[#241c16]/20 p-10 text-center text-sm text-[#5c5148]">
+        <p className="rounded-xl border border-dashed border-ink/20 p-10 text-center text-sm text-ink-soft">
           No enquiries {status ? `marked “${status}”` : "yet"}.
         </p>
       ) : (
@@ -59,22 +59,22 @@ export default async function EnquiriesPage({
             const digits = e.phone.replace(/\D/g, "");
             const wa = digits.length >= 10 ? whatsappLink(digits.length === 10 ? `91${digits}` : digits, `Hi ${e.name}, thanks for your MerchGoa enquiry${e.product ? ` about ${e.product}` : ""}. `) : null;
             return (
-              <li key={e.id} className="rounded-xl border border-[#241c16]/10 bg-white p-5">
+              <li key={e.id} className="rounded-xl border border-ink/10 bg-surface p-5">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <p className="text-lg font-semibold">
                       {e.name} <StatusPill status={e.status} />
                     </p>
-                    <p className="text-xs text-[#5c5148]">
+                    <p className="text-xs text-ink-soft">
                       {new Date(e.at).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short", timeZone: "Asia/Kolkata" })}
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-2 text-sm">
-                    <a className="rounded-lg border border-[#241c16]/15 px-3 py-1.5" href={`mailto:${e.email}?subject=${encodeURIComponent(`Your MerchGoa enquiry${e.product ? `: ${e.product}` : ""}`)}`}>
+                    <a className="rounded-lg border border-ink/15 px-3 py-1.5" href={`mailto:${e.email}?subject=${encodeURIComponent(`Your MerchGoa enquiry${e.product ? `: ${e.product}` : ""}`)}`}>
                       Email
                     </a>
                     {e.phone ? (
-                      <a className="rounded-lg border border-[#241c16]/15 px-3 py-1.5" href={`tel:${e.phone.replace(/[^\d+]/g, "")}`}>
+                      <a className="rounded-lg border border-ink/15 px-3 py-1.5" href={`tel:${e.phone.replace(/[^\d+]/g, "")}`}>
                         Call
                       </a>
                     ) : null}
@@ -94,9 +94,9 @@ export default async function EnquiriesPage({
                   <Info k="Needed by" v={e.needed_by} />
                   <Info k="Location" v={e.location} />
                 </dl>
-                {e.notes ? <p className="mt-3 whitespace-pre-wrap rounded-lg bg-[#f6f1e8] p-3 text-sm">{e.notes}</p> : null}
+                {e.notes ? <p className="mt-3 whitespace-pre-wrap rounded-lg bg-page p-3 text-sm">{e.notes}</p> : null}
 
-                <form action={saveEnquiry} className="mt-4 grid gap-3 border-t border-[#241c16]/10 pt-4 sm:grid-cols-[160px_1fr_auto] sm:items-start">
+                <form action={saveEnquiry} className="mt-4 grid gap-3 border-t border-ink/10 pt-4 sm:grid-cols-[160px_1fr_auto] sm:items-start">
                   <input type="hidden" name="id" value={e.id} />
                   <select name="status" defaultValue={e.status} className={inputCls} aria-label="Status">
                     {ENQUIRY_STATUSES.map((s: EnquiryStatus) => (
@@ -108,7 +108,7 @@ export default async function EnquiriesPage({
                   <textarea name="adminNote" defaultValue={e.adminNote} rows={1} placeholder="Internal note (quote sent, price, follow-up date…)" className={inputCls} aria-label="Internal note" />
                   <SubmitButton>Update</SubmitButton>
                 </form>
-                <details className="mt-2 text-xs text-[#5c5148]">
+                <details className="mt-2 text-xs text-ink-soft">
                   <summary className="cursor-pointer">Delete</summary>
                   <form action={removeEnquiry} className="mt-2 flex items-center gap-3">
                     <input type="hidden" name="id" value={e.id} />
@@ -129,7 +129,7 @@ function FilterLink({ label, href, active }: { label: string; href: string; acti
   return (
     <Link
       href={href}
-      className={`rounded-full px-3 py-1 capitalize ${active ? "bg-[#163a44] text-white" : "border border-[#241c16]/15 bg-white"}`}
+      className={`rounded-full px-3 py-1 capitalize ${active ? "bg-sea text-white" : "border border-ink/15 bg-surface"}`}
     >
       {label}
     </Link>
@@ -140,7 +140,7 @@ function Info({ k, v }: { k: string; v: string }) {
   if (!v) return null;
   return (
     <div>
-      <dt className="text-xs text-[#5c5148]">{k}</dt>
+      <dt className="text-xs text-ink-soft">{k}</dt>
       <dd className="break-words">{v}</dd>
     </div>
   );

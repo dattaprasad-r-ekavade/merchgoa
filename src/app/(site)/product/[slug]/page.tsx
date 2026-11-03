@@ -90,7 +90,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   return (
     <main className="mx-auto max-w-6xl px-5 py-10">
       <JsonLd data={jsonLd} />
-      <nav aria-label="Breadcrumb" className="mb-6 text-sm text-[#5c5148]">
+      <nav aria-label="Breadcrumb" className="mb-6 text-sm text-ink-soft">
         <ol className="flex flex-wrap gap-2">
           <li>
             <Link href="/" className="hover:underline">Home</Link> /
@@ -98,12 +98,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <li>
             <Link href="/shop" className="hover:underline">Shop</Link> /
           </li>
-          <li aria-current="page" className="text-[#241c16]">{product.name}</li>
+          <li aria-current="page" className="text-ink">{product.name}</li>
         </ol>
       </nav>
 
       <div className="grid gap-10 md:grid-cols-2">
-        <div className="relative aspect-square overflow-hidden rounded-[2rem] bg-[#e7dcc8] md:sticky md:top-24 md:self-start">
+        <div className="relative aspect-square overflow-hidden rounded-[2rem] bg-surface-2 md:sticky md:top-24 md:self-start">
           <Image
             src={product.image}
             alt={product.imageAlt || product.name}
@@ -114,25 +114,25 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           />
         </div>
         <div>
-          <p className="text-xs uppercase tracking-[0.22em] text-[#c45c26]">{product.category}</p>
+          <p className="text-xs uppercase tracking-[0.22em] text-coral-ink">{product.category}</p>
           <h1 className="mt-3 text-4xl md:text-5xl">{product.name}</h1>
           <div className="mt-4">
             <Price product={product} size="lg" />
           </div>
-          <p className="mt-5 text-[#5c5148]">{product.description}</p>
+          <p className="mt-5 text-ink-soft">{product.description}</p>
 
-          <ul className="mt-6 grid gap-2 text-sm text-[#5c5148]">
+          <ul className="mt-6 grid gap-2 text-sm text-ink-soft">
             <li>
-              <strong className="text-[#241c16]">Made to order:</strong> printed in {settings.productionDays}, delivered
+              <strong className="text-ink">Made to order:</strong> printed in {settings.productionDays}, delivered
               in {settings.deliveryDays} to {settings.shipsTo}.
             </li>
             {settings.christmasCutoff ? (
               <li>
-                <strong className="text-[#241c16]">For Christmas:</strong> order by {settings.christmasCutoff}.
+                <strong className="text-ink">For Christmas:</strong> order by {settings.christmasCutoff}.
               </li>
             ) : null}
             <li>
-              <strong className="text-[#241c16]">Your logo instead?</strong>{" "}
+              <strong className="text-ink">Your logo instead?</strong>{" "}
               <Link href="/business-gifting" className="underline underline-offset-2">
                 Branded orders for teams
               </Link>
@@ -144,9 +144,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <WhatsAppButton message={`Hi MerchGoa, I'm interested in the ${product.name}.`} />
           </div>
 
-          <div className="mt-10 rounded-2xl bg-[#fffaf3] p-6">
+          <div className="mt-10 rounded-2xl bg-surface p-6">
             <h2 className="text-2xl">Enquire about this piece</h2>
-            <p className="mt-1 text-sm text-[#5c5148]">Quantity, date and any personalisation. We reply within a day.</p>
+            <p className="mt-1 text-sm text-ink-soft">Quantity, date and any personalisation. We reply within a day.</p>
             <div className="mt-4">
               <EnquireForm defaultProduct={product.name} />
             </div>

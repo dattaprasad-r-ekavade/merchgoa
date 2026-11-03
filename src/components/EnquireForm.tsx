@@ -29,7 +29,7 @@ export function EnquireForm({ defaultProduct = "" }: { defaultProduct?: string }
   }
 
   const field =
-    "w-full rounded-xl border border-[#241c16]/15 bg-white px-4 py-3 text-[#241c16] outline-none focus:border-[#c45c26]";
+    "w-full rounded-xl border border-ink/15 bg-field px-4 py-3 text-ink outline-none focus:border-[#c45c26]";
 
   return (
     <form onSubmit={onSubmit} className="grid gap-4">
@@ -68,15 +68,15 @@ export function EnquireForm({ defaultProduct = "" }: { defaultProduct?: string }
         Logo or personalisation
         <textarea name="notes" rows={4} className={field} placeholder="Budget, branding, anything useful." />
       </label>
-      <p className="text-xs text-[#5c5148]">Do not send card numbers or passwords.</p>
+      <p className="text-xs text-ink-soft">Do not send card numbers or passwords.</p>
       <button
         disabled={status === "sending"}
-        className="rounded-full bg-[#c45c26] px-6 py-3 text-white hover:bg-[#241c16] disabled:opacity-60"
+        className="rounded-full bg-[#c45c26] px-6 py-3 text-white hover:bg-sea-hover disabled:opacity-60"
       >
         {status === "sending" ? "Sending…" : "Send enquiry"}
       </button>
       {message ? (
-        <p className={status === "ok" ? "text-sm text-[#163a44]" : "text-sm text-[#c45c26]"}>{message}</p>
+        <p className={status === "ok" ? "text-sm text-sea-ink" : "text-sm text-coral-ink"}>{message}</p>
       ) : null}
     </form>
   );

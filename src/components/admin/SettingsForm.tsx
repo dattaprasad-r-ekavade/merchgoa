@@ -1,16 +1,16 @@
 "use client";
 
-import { useActionState } from "react";
+import { startTransition, useActionState } from "react";
 import { updateSettings } from "@/app/admin/actions";
 import { Card, Field, inputCls } from "@/components/admin/fields";
-import { FormMessage, SubmitButton } from "@/components/admin/ui";
+import { FormMessage, SubmitButton, submitWithoutReset } from "@/components/admin/ui";
 import type { Settings } from "@/lib/site";
 
 export function SettingsForm({ settings, alerts }: { settings: Settings; alerts: { telegram: boolean; email: boolean } }) {
-  const [state, action] = useActionState(updateSettings, undefined);
+  const [state, action, pending] = useActionState(updateSettings, undefined);
   const s = settings;
   return (
-    <form action={action} className="grid gap-6">
+    <form onSubmit={submitWithoutReset(action, startTransition)} className="grid gap-6">
       <Card title="Contact">
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="Phone (as shown)">
@@ -75,7 +75,7 @@ export function SettingsForm({ settings, alerts }: { settings: Settings; alerts:
           </Field>
           <div className="text-sm">
             <p className="font-medium">Enquiry alerts</p>
-            <p className="mt-1 text-[#5c5148]">
+            <p className="mt-1 text-ink-soft">
               Telegram: {alerts.telegram ? "on" : "off"} · Email: {alerts.email ? "on" : "off"}. These are set with server
               environment variables (see README), not here, so keys never live in the data folder.
             </p>
@@ -83,8 +83,8 @@ export function SettingsForm({ settings, alerts }: { settings: Settings; alerts:
         </div>
       </Card>
 
-      <div className="sticky bottom-4 flex items-center gap-4 rounded-xl border border-[#241c16]/10 bg-white p-4 shadow-lg">
-        <SubmitButton>Save settings</SubmitButton>
+      <div className="sticky bottom-4 flex items-center gap-4 rounded-xl border border-ink/10 bg-surface p-4 shadow-lg">
+        <SubmitButton pending={pending}>Save settings</SubmitButton>
         <div className="flex-1">
           <FormMessage state={state} />
         </div>

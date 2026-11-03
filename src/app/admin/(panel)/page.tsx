@@ -29,11 +29,11 @@ export default async function Dashboard() {
           <ul className="grid gap-2 text-sm">
             {checks.map((c) => (
               <li key={c.label} className="flex items-start gap-2">
-                <span aria-hidden className={c.ok ? "text-[#1f7a4d]" : "text-[#c45c26]"}>
+                <span aria-hidden className={c.ok ? "text-ok-ink" : "text-coral-ink"}>
                   {c.ok ? "✓" : "○"}
                 </span>
                 {c.ok ? (
-                  <span className="text-[#5c5148]">{c.label}</span>
+                  <span className="text-ink-soft">{c.label}</span>
                 ) : (
                   <Link href={c.href} className="underline underline-offset-2">
                     {c.label}
@@ -53,20 +53,20 @@ export default async function Dashboard() {
           }
         >
           {enquiries.length === 0 ? (
-            <p className="text-sm text-[#5c5148]">No enquiries yet.</p>
+            <p className="text-sm text-ink-soft">No enquiries yet.</p>
           ) : (
-            <ul className="divide-y divide-[#241c16]/10 text-sm">
+            <ul className="divide-y divide-ink/10 text-sm">
               {enquiries.slice(0, 6).map((e) => (
                 <li key={e.id} className="flex items-center justify-between gap-3 py-2">
                   <span>
-                    <strong>{e.name}</strong> <span className="text-[#5c5148]">· {e.product || "General"}{e.quantity ? ` · ${e.quantity}` : ""}</span>
+                    <strong>{e.name}</strong> <span className="text-ink-soft">· {e.product || "General"}{e.quantity ? ` · ${e.quantity}` : ""}</span>
                   </span>
                   <StatusPill status={e.status} />
                 </li>
               ))}
             </ul>
           )}
-          <p className="mt-4 text-xs text-[#5c5148]">
+          <p className="mt-4 text-xs text-ink-soft">
             Pipeline:{" "}
             {ENQUIRY_STATUSES.map((s) => `${s} ${enquiries.filter((e) => e.status === s).length}`).join(" · ")}
           </p>
@@ -78,8 +78,8 @@ export default async function Dashboard() {
 
 function Stat({ label, value, href }: { label: string; value: number; href: string }) {
   return (
-    <Link href={href} className="rounded-xl border border-[#241c16]/10 bg-white p-5 hover:border-[#c45c26]/40">
-      <p className="text-xs uppercase tracking-[0.14em] text-[#5c5148]">{label}</p>
+    <Link href={href} className="rounded-xl border border-ink/10 bg-surface p-5 hover:border-[#c45c26]/40">
+      <p className="text-xs uppercase tracking-[0.14em] text-ink-soft">{label}</p>
       <p className="mt-2 text-3xl font-semibold">{value}</p>
     </Link>
   );

@@ -26,7 +26,7 @@ export default async function EditProduct({
   return (
     <div className="grid gap-6">
       <div>
-        <Link href="/admin/products" className="text-sm text-[#5c5148] hover:underline">
+        <Link href="/admin/products" className="text-sm text-ink-soft hover:underline">
           ← Products
         </Link>
         <h1 className="mt-1 text-3xl">{product.name}</h1>
@@ -42,7 +42,7 @@ export default async function EditProduct({
             Delete
           </SubmitButton>
         </form>
-        <p className="mt-2 text-xs text-[#5c5148]">Prefer “Hide from the site” if you might bring it back.</p>
+        <p className="mt-2 text-xs text-ink-soft">Prefer “Hide from the site” if you might bring it back.</p>
       </Card>
     </div>
   );

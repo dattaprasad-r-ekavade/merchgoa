@@ -1,13 +1,92 @@
 @import "tailwindcss";
 
+/*
+ * Colour roles. Light values here; dark values below, applied when the OS prefers dark
+ * (unless the visitor chose light) or when the visitor chose dark with the toggle.
+ * Use the Tailwind names (bg-page, text-ink, text-ink-soft, bg-surface…) instead of hex.
+ */
 :root {
-  --sand: #f3eadc;
-  --sand-2: #e7dcc8;
+  color-scheme: light;
+  --page: #f3eadc;
+  --surface: #fffaf3;
+  --surface-2: #e7dcc8;
+  --field: #ffffff;
   --ink: #241c16;
   --ink-soft: #5c5148;
   --sea: #163a44;
-  --coral: #c45c26;
-  --paper: #fffaf3;
+  --sea-hover: #241c16;
+  --sea-ink: #163a44;
+  --coral-ink: #c45c26;
+  --ok-bg: #dcefe4;
+  --ok-ink: #14502f;
+  --danger-bg: #fbe4dc;
+  --danger-ink: #7c2412;
+  --muted-bg: #e9e6e1;
+  --muted-ink: #555555;
+  --selection: #f0c9a8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #14110e;
+    --surface: #1f1a15;
+    --surface-2: #2a231c;
+    --field: #1a1612;
+    --ink: #f1e8da;
+    --ink-soft: #b8aa99;
+    --sea: #1d4f5c;
+    --sea-hover: #26677a;
+    --sea-ink: #8cc7d4;
+    --coral-ink: #ec8d5f;
+    --ok-bg: #173a28;
+    --ok-ink: #7fd3a5;
+    --danger-bg: #3d1d14;
+    --danger-ink: #f3a48c;
+    --muted-bg: #2e2a26;
+    --muted-ink: #b5aca2;
+    --selection: #6b3a1e;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #14110e;
+  --surface: #1f1a15;
+  --surface-2: #2a231c;
+  --field: #1a1612;
+  --ink: #f1e8da;
+  --ink-soft: #b8aa99;
+  --sea: #1d4f5c;
+  --sea-hover: #26677a;
+  --sea-ink: #8cc7d4;
+  --coral-ink: #ec8d5f;
+  --ok-bg: #173a28;
+  --ok-ink: #7fd3a5;
+  --danger-bg: #3d1d14;
+  --danger-ink: #f3a48c;
+  --muted-bg: #2e2a26;
+  --muted-ink: #b5aca2;
+  --selection: #6b3a1e;
+}
+
+@theme inline {
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-field: var(--field);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-sea: var(--sea);
+  --color-sea-hover: var(--sea-hover);
+  --color-sea-ink: var(--sea-ink);
+  --color-coral-ink: var(--coral-ink);
+  --color-ok-bg: var(--ok-bg);
+  --color-ok-ink: var(--ok-ink);
+  --color-danger-bg: var(--danger-bg);
+  --color-danger-ink: var(--danger-ink);
+  --color-muted-bg: var(--muted-bg);
+  --color-muted-ink: var(--muted-ink);
 }
 
 html {
@@ -15,7 +94,7 @@ html {
 }
 
 body {
-  background: var(--sand);
+  background: var(--page);
   color: var(--ink);
   font-family: var(--font-sans), system-ui, sans-serif;
 }
@@ -32,7 +111,7 @@ body {
 }
 
 ::selection {
-  background: #f0c9a8;
+  background: var(--selection);
 }
 
 /* Long-form policy pages */

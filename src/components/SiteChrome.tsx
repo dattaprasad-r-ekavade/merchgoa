@@ -40,7 +40,7 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
   return (
     <>
       <JsonLd data={org} />
-      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2">
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50 focus:rounded focus:bg-surface focus:px-3 focus:py-2">
         Skip to content
       </a>
       {s.announcement ? (

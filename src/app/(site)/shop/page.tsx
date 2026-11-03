@@ -27,9 +27,9 @@ export default async function ShopPage() {
   return (
     <main className="mx-auto max-w-6xl px-5 py-14">
       <JsonLd data={list} />
-      <p className="text-xs uppercase tracking-[0.22em] text-[#c45c26]">MerchGoa / Collection 01</p>
+      <p className="text-xs uppercase tracking-[0.22em] text-coral-ink">MerchGoa / Collection 01</p>
       <h1 className="mt-3 text-5xl">Objects for good days.</h1>
-      <p className="mt-4 max-w-xl text-[#5c5148]">
+      <p className="mt-4 max-w-xl text-ink-soft">
         Start with a tote, a desk companion or a small keepsake. Printed to order and delivered across
         India. Need 25 or more, or your own logo? Ask about business gifting.
       </p>
